@@ -3,13 +3,12 @@ author = Pavel Vanacek
 '''
 TEXTS = ['''
 Situated about 10 miles west of Kemmerer, 
-Fossil Butte is a ruggedly impressive 
-topographic feature that rises sharply 
-some 1000 feet above Twin Creek Valley 
-to an elevation of more than 7500 feet 
+Fossil Butte is a ruggedly impressive topographic 
+feature that rises sharply some 1000 feet 
+above Twin Creek Valley to an elevation of more than 7500 feet 
 above sea level. The butte is located just 
 north of US 30N and the Union Pacific Railroad, 
-which traverse the valley. ''',
+which traverse the valley.''',
 
 '''At the base of Fossil Butte are the bright 
 red, purple, yellow and gray beds of the Wasatch 
@@ -81,13 +80,18 @@ print(letterhead)
 # Text analysis
     # 1) number of words
 pocet_slov = Selection_idexed.split()
-pocet_slov_number = len(pocet_slov)
+pocet_slov_cleaned = []
+for slovo in pocet_slov:
+    pocet_slov_cleaned.append(slovo.strip(",.!'"))
+print(pocet_slov_cleaned)
+
+pocet_slov_number = len(pocet_slov_cleaned)
 print(f'There are {pocet_slov_number} words in the selected text.')
 
     # 2) number of words with first titlecase letter
 pocet_slov_titlecase = 0
 titlecase_slova = []
-for slovo in pocet_slov:
+for slovo in pocet_slov_cleaned:
     if slovo[0].isupper():
         titlecase_slova.append(slovo)
         pocet_slov_titlecase += 1
@@ -103,7 +107,7 @@ else:
     # 3) number of words with first uppercase letter
 pocet_slov_uppercase = 0
 uppercase_slova = []
-for slovo in pocet_slov:
+for slovo in pocet_slov_cleaned:
     if slovo[::].isupper() and slovo[::].isalpha():
         uppercase_slova.append(slovo)
         pocet_slov_uppercase += 1
@@ -119,7 +123,7 @@ else:
     # 4) number of words with first lowercase letter
 pocet_slov_lowercase = 0
 lowercase_slova = []
-for slovo in pocet_slov:
+for slovo in pocet_slov_cleaned:
     if slovo[::].islower():
         lowercase_slova.append(slovo)
         pocet_slov_lowercase += 1
@@ -135,7 +139,7 @@ else:
     # 5) number of numeric strings
 pocet_numeric_strings = 0
 numeric_strings = []
-for slovo in pocet_slov:
+for slovo in pocet_slov_cleaned:
     if slovo[::].isdigit():
         numeric_strings.append(slovo)
         pocet_numeric_strings += 1
